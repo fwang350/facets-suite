@@ -41,6 +41,7 @@ run_facets = function(read_counts,
                       snp_nbhd = 250,
                       min_nhet = 15,
                       genome = c('hg18', 'hg19', 'hg38', 'mm9', 'mm10'),
+                      unmatched = FALSE,
                       seed = 100,
                       facets_lib_path = '') {
     
@@ -62,7 +63,7 @@ run_facets = function(read_counts,
 
     # Run FACETS algorithm
     dat = facets::preProcSample(read_counts, ndepth = ndepth, het.thresh = 0.25, snp.nbhd = snp_nbhd, cval = 25,
-                                gbuild = genome, hetscale = TRUE, unmatched = FALSE, ndepthmax = 1000)
+                                gbuild = genome, hetscale = TRUE, unmatched = unmatched, ndepthmax = 1000)
     out = facets::procSample(dat, cval = cval, min.nhet = min_nhet, dipLogR = dipLogR)
     fit = facets::emcncf(out)
     

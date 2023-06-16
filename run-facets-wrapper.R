@@ -44,6 +44,8 @@ parser$add_argument('-nd', '--normal-depth', required = FALSE, type = 'integer',
                     default = 35, help = 'Min. depth in normal to keep SNPs [default %(default)s]')
 parser$add_argument('-d', '--dipLogR', required = FALSE, type = 'double',
                     default = NULL, help = 'Manual dipLogR')
+parser$add_argument('-um', '--unmatched', required = FALSE, type = 'logical',
+                    default = FALSE, help = 'Run using unmatched mode')
 parser$add_argument('-S', '--seed', required = FALSE, type = 'integer',
                     default = 100, help = 'Manual seed value [default %(default)s]')
 parser$add_argument('-l', '--legacy-output', required = FALSE, type = 'logical',
@@ -68,6 +70,7 @@ print_run_details = function(outfile,
                              purity,
                              ploidy,
                              dipLogR,
+                             unmatched,
                              flags = NULL,
                              ...) {
     params = c(...)
@@ -84,6 +87,7 @@ print_run_details = function(outfile,
         'min_nhet' = min_nhet,
         'ndepth' = args$normal_depth,
         'genome' = args$genome,
+        'unmatched' = args$unmatched,
         'seed' = args$seed,
         'flags' = flags,
         'input_file' = basename(args$counts_file))
@@ -167,6 +171,7 @@ facets_iteration = function(name_prefix, ...) {
                         snp_nbhd = params$snp_nbhd,
                         min_nhet = params$min_nhet,
                         genome = params$genome,
+                        unmatched = params$unmatched,
                         seed = params$seed,
                         facets_lib_path = params$facets_lib_path)
     
@@ -217,6 +222,7 @@ if (!is.null(args$purity_cval)) {
                                      snp_nbhd = args$snp_window_size,
                                      min_nhet = args$purity_min_nhet,
                                      genome = args$genome,
+                                     unmatched = args$unmatched,
                                      seed = args$seed,
                                      facets_lib_path = args$facets_lib_path)
 
@@ -227,6 +233,7 @@ if (!is.null(args$purity_cval)) {
                                      snp_nbhd = args$snp_window_size,
                                      min_nhet = args$min_nhet,
                                      genome = args$genome,
+                                     unmatched = args$unmatched,
                                      seed = args$seed,
                                      facets_lib_path = args$facets_lib_path)
     
@@ -288,6 +295,7 @@ if (!is.null(args$purity_cval)) {
                               snp_nbhd = args$snp_window_size,
                               min_nhet = args$min_nhet,
                               genome = args$genome,
+                              unmatched = args$unmatched,
                               seed = args$seed,
                               facets_lib_path = args$facets_lib_path)
     

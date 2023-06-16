@@ -1,6 +1,5 @@
-FROM rocker/tidyverse:3.6.1
+FROM --platform=linux/amd64 rocker/tidyverse:4.2.1
 
-LABEL maintainer="Philip Jonsson <philip.jonsson@gmail.com>"
 ENV HTSLIB_VERSION 1.5
 ENV HTSTOOLS_VERSION 0.1.1
 ENV FACETSSUITE_VERSION Rpackagev2

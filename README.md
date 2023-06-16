@@ -1,4 +1,5 @@
 # facetsSuite
+## This repo is forked from mskcc:facets-suite changes was made to enable the unmatched option
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![Travis build status](https://travis-ci.org/taylor-lab/facets-suite.svg?branch=master)](https://travis-ci.org/taylor-lab/facets-suite)
 [![Coverage status](https://codecov.io/gh/taylor-lab/facets-suite/branch/master/graph/badge.svg)](https://codecov.io/github/taylor-lab/facets-suite?branch=master)
@@ -63,7 +64,7 @@ Most use of this package can be done from the command line using three wrapper s
     ```shell
     run-facets-wrapper.R \
         --counts-file tumor_normal.snp_pileup.gz \
-        --sample-id tumorID__normalID \
+        --sample-id tumorID__normalID --unmatched FALSE\
         --purity-cval 1000 --cval 500 \
         --everything
     ```
@@ -93,16 +94,16 @@ All three wrappers use [argparse](https://github.com/trevorld/r-argparse) for ar
 In order to run the containerized versions of the wrapper scripts, first pull the [docker image](https://cloud.docker.com/u/philipjonsson/repository/docker/philipjonsson/facets-suite):
 ```shell
 ## Docker
-docker pull philipjonsson/facets-suite:dev
+docker pull fangyanw/facets-suite:unmatched
 
 ## Singularity
-singularity pull --name facets-suite-dev.img docker://philipjonsson/facets-suite:dev
+singularity pull --name facets-suite-dev.img docker://fangyanw/facets-suite:unmatched
 ```
 
 Then run either of the scripts as such:
 ```shell
 ## Docker
-docker run -it -v $PWD:/work philipjonsson/facets-suite:dev run-facets-wrapper.R \
+docker run -it -v $PWD:/work fangyanw/facets-suite:unmatched run-facets-wrapper.R \
     --counts-file work/SampleA.snp_pileup.gz \
     --sample-id SampleA \
     --directory work
